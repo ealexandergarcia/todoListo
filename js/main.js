@@ -14,4 +14,25 @@ let AddTask =()=>{
         li.appendChild(span);
     }
     inputBox.value = '';
+    saveData();
 }
+
+lsitContainer.addEventListener("click", (e)=>{
+    if(e.target.tagName === "LI"){
+        e.target.classList.toggle("checked");
+        saveData();
+    }
+    else if (e.target.tagName === "SPAN"){
+        e.target.parentElement.remove();
+        saveData();
+    }
+}, false)
+
+let saveData = ()=>{
+    localStorage.setItem("data",lsitContainer.innerHTML)
+}
+
+let showTask=() =>{
+    lsitContainer.innerHTML = localStorage.getItem("data");
+}
+showTask();
